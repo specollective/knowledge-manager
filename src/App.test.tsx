@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from './App';
 
@@ -12,11 +12,10 @@ test('renders welcome heading', () => {
 test('renders dynamic headings work', async () => {
   render(<App />);
 
-  userEvent.click(screen.getByText('Physical Sciences'))
-  let headingElement = screen.getByText(/physical-science/i);
-  expect(headingElement).toBeInTheDocument();
+  userEvent.click(screen.getByText('Software Engineering'))
 
-  userEvent.click(screen.getByText('Formal Sciences'))
-  headingElement = screen.getByText(/formal-science/i);
-  expect(headingElement).toBeInTheDocument();
+  waitFor(() => {
+    let headingElement = screen.getByText(/What is software engineering?/i);
+    expect(headingElement).toBeInTheDocument();
+  })
 });

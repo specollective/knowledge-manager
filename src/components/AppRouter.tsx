@@ -1,17 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Link, RouteComponentProps } from "react-router-dom";
 import NavigationBar from './NavigationBar'
-
-interface MatchProps {
-  slug: string
-}
+import ConceptPage from './ConceptPage'
 
 function HomePage () {
-  return <h1>Welcome!</h1>;
-}
-
-const ConceptPage = ({ match }: RouteComponentProps<MatchProps>) =>   {
-  return <h2>{match.params.slug}</h2>;
+  return <h1>Welcome!</h1>
 }
 
 function AppRouter() {

@@ -1,0 +1,20 @@
+{
+  "concepts": [
+    {
+      "id": 1,
+      "title": "Software Engineering",
+      "question": "What is software engineering?",
+      "answer": "the application of a systematic, disciplined, quantifiable approach to the development, operation, and maintenance of software; that is, the application of engineering to software.",
+      "source": "Software Engineering Body of Knowledge",
+      "slug": "software-engineering"
+    },
+    {
+      "id": 2,
+      "title": "Product Management",
+      "question": "What is product management?",
+      "answer": "an organizational function within a company dealing with new product development, business justification, planning, verification, forecasting, pricing, product launch, and marketing of a product or products at all stages of the product lifecycle.",
+      "source": "Wikipedia",
+      "slug": "product-management"
+    }
+  ]
+}

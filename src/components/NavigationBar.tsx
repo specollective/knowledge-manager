@@ -9,10 +9,7 @@ function NavigationBar () {
            <Link to="/">Knowledge Manager</Link>
          </li>
          <li>
-           <Link to="/concepts/formal-science">Formal Sciences</Link>
-         </li>
-         <li>
-           <Link to="/concepts/physical-science">Physical Sciences</Link>
+           <Link to="/concepts/software-engineering">Software Engineering</Link>
          </li>
        </ul>
      </nav>
