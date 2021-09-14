@@ -24,7 +24,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "cypress": "cypress open"
+    "cypress": "cypress open",
+    "api:knowledge": "json-server data/knowledge.json --port=3333"
   },
   "eslintConfig": {
     "extends": [
@@ -45,6 +46,7 @@
     ]
   },
   "devDependencies": {
-    "cypress": "^8.4.0"
+    "cypress": "^8.4.0",
+    "json-server": "^0.16.3"
   }
 }
