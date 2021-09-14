@@ -1,9 +1,22 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders welcome heading', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const headingElement = screen.getByText(/Welcome/i);
+  expect(headingElement).toBeInTheDocument();
+});
+
+test('renders dynamic headings work', async () => {
+  render(<App />);
+
+  userEvent.click(screen.getByText('Physical Sciences'))
+  let headingElement = screen.getByText(/physical-science/i);
+  expect(headingElement).toBeInTheDocument();
+
+  userEvent.click(screen.getByText('Formal Sciences'))
+  headingElement = screen.getByText(/formal-science/i);
+  expect(headingElement).toBeInTheDocument();
 });
