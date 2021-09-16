@@ -6,9 +6,24 @@ describe('Cypress', () => {
   it('opens the app', () => {
     cy.visit('http://localhost:3000')
 
-    cy.contains('Welcome').should('be.visible')
-    cy.contains('Formal Sciences').should('be.visible')
-    cy.contains('Social Sciences').should('be.visible')
+    cy.contains('Search Knowledge Base').should('be.visible')
+  })
 
+  it('handles basic search', () => {
+    cy.visit('http://localhost:3000')
+    cy.contains('What is software design?').should('not.exist')
+    cy.get('#search-input')
+      .should('be.visible')
+      .type('software{enter}')
+    cy.contains('What is software design?').should('be.visible')
+  })
+
+  it('navigates to concept page', () => {
+    cy.visit('http://localhost:3000')
+    cy.get('#search-input')
+      .should('be.visible')
+      .type('software{enter}')
+    cy.contains('What is software engineering?').click()
+    cy.contains('What is configuration management?').should('be.visible')
   })
 })

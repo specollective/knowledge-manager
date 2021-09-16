@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Link, RouteComponentProps } from "react-router-dom";
 import NavigationBar from './NavigationBar'
 import ConceptPage from './ConceptPage'
-
-function HomePage () {
-  return <h1>Welcome!</h1>
-}
+import HomePage from './HomePage'
+import ReviewPage from './ReviewPage'
+import ConceptCreatePage from './ConceptCreatePage'
 
 function AppRouter() {
   return (
@@ -13,7 +12,9 @@ function AppRouter() {
      <div>
        <NavigationBar />
        <Route path="/" exact component={HomePage} />
-       <Route path="/concepts/:slug" component={ConceptPage} />
+       <Route path="/new" component={ConceptCreatePage} />
+       <Route path="/review/:slug" component={ReviewPage} />
+       <Route path="/learn/:slug" component={ConceptPage} />
      </div>
    </Router>
  );

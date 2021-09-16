@@ -7,8 +7,11 @@ interface MatchProps {
 }
 
 interface ConceptInterface {
+  id: number;
   question: string;
   answer: string;
+  slug: string;
+  concepts: ConceptInterface[]
 }
 
 const ConceptPage = ({ match }: RouteComponentProps<MatchProps>) => {
@@ -18,7 +21,7 @@ const ConceptPage = ({ match }: RouteComponentProps<MatchProps>) => {
 
   useEffect(() => {
     async function loadData () {
-      const response = await fetch(`http://localhost:3333/concepts?slug=${slug}`)
+      const response = await fetch(`http://localhost:3333/concepts?slug=${slug}&_embed=concepts`)
       const json = await response.json()
       const record = json[0]
       setConcept(record)
@@ -32,8 +35,31 @@ const ConceptPage = ({ match }: RouteComponentProps<MatchProps>) => {
 
   return (
     <div>
-      <p>{concept.question}</p>
-      <p>{concept.answer}</p>
+      <div className="concept-header">
+        <div>
+          <h3>{concept.question}</h3>
+          <h4>{concept.answer.split('\n').map(line => <p key={line}>{line}</p>)}</h4>
+        </div>
+        <div>
+          { concept?.concepts?.length > 0 && <Link to={`/review/${concept.slug}`}>Review Concept</Link> }
+          <Link to={`/new?conceptId=${concept.id}`}>New Concept</Link>
+        </div>
+      </div>
+
+      <div className="concept-subconcepts">
+        <div>
+          <h3>Subconcepts</h3>
+        </div>
+        <div>
+          {concept.concepts.map(subconcept => {
+            return (
+              <div key={subconcept.slug}>
+                <Link to={`/learn/${subconcept.slug}`}>{subconcept.question}</Link>
+              </div>
+            )
+          })}
+        </div>
+      </div>
     </div>
   )
 }

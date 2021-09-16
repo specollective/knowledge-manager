@@ -1,20 +1,203 @@
 {
   "concepts": [
     {
-      "id": 1,
-      "title": "Software Engineering",
-      "question": "What is software engineering?",
       "answer": "the application of a systematic, disciplined, quantifiable approach to the development, operation, and maintenance of software; that is, the application of engineering to software.",
+      "id": 1,
+      "question": "What is software engineering?",
+      "slug": "software-engineering",
       "source": "Software Engineering Body of Knowledge",
-      "slug": "software-engineering"
+      "title": "Software Engineering"
     },
     {
-      "id": 2,
-      "title": "Product Management",
-      "question": "What is product management?",
       "answer": "an organizational function within a company dealing with new product development, business justification, planning, verification, forecasting, pricing, product launch, and marketing of a product or products at all stages of the product lifecycle.",
+      "id": 2,
+      "question": "What is product management?",
+      "slug": "product-management",
       "source": "Wikipedia",
-      "slug": "product-management"
+      "title": "Product Management"
+    },
+    {
+      "answer": "Software requirements express the needs and constraints placed on a software product that contribute to the solution of some real-world problem.",
+      "conceptId": 1,
+      "id": 3,
+      "question": "What are software requirements?",
+      "slug": "software-requirements",
+      "source": "SWEBOK",
+      "title": "Software Requirements"
+    },
+    {
+      "answer": "[INSERT ANSWER]",
+      "conceptId": 1,
+      "id": 4,
+      "question": "What is software design?",
+      "slug": "software-design",
+      "source": "[SOURCE]",
+      "title": "Software Design"
+    },
+    {
+      "answer": "[INSERT ANSWER]",
+      "conceptId": 1,
+      "id": 5,
+      "question": "What is software construction?",
+      "slug": "software-construction",
+      "source": "[SOURCE]",
+      "title": "Software Construction"
+    },
+    {
+      "answer": "[INSERT ANSWER]",
+      "conceptId": 1,
+      "id": 6,
+      "question": "What is configuration management?",
+      "slug": "configuration-management",
+      "source": "[SOURCE]",
+      "title": "Configuration Management"
+    },
+    {
+      "answer": "A software requirement is a property that must be exhibited by something in order to solve some problem in the real world.",
+      "conceptId": 3,
+      "id": 7,
+      "question": "What is a software requirement?",
+      "slug": "software-requirement",
+      "source": "SWEBOK",
+      "title": "Software Requirement"
+    },
+    {
+      "answer": "A functional requirement describes the functions that the software is to execute.",
+      "conceptId": 3,
+      "id": 8,
+      "question": "What is a functional requirement?",
+      "slug": "functional-requirement",
+      "source": "SWEBOK",
+      "title": "Functional Requirements"
+    },
+    {
+      "answer": "A functional nonrequirement describes constraints or quality requirements for a given solution.",
+      "conceptId": 3,
+      "id": 9,
+      "question": "What is a nonfunctional requirement?",
+      "slug": "nonfunction-requirement",
+      "source": "SWEBOK",
+      "title": "Nonfunctional Requirements"
+    },
+    {
+      "answer": "requirements that can not be addressed by a single component but that depend on how all the software components interoperate.",
+      "conceptId": 3,
+      "id": 10,
+      "question": "In software requirements what is an emergent property?",
+      "slug": "software-emergent-properties",
+      "title": "Emergent Properties"
+    },
+    {
+      "title": "Requirements elicitation",
+      "question": "What is requirements elicitation",
+      "answer": "[ADD ANSWER]",
+      "slug": "requirements-elicitation",
+      "conceptId": 3,
+      "id": 11
+    },
+    {
+      "title": "ddd",
+      "question": "ddd",
+      "answer": "ddd",
+      "slug": "ddd",
+      "conceptId": "3",
+      "id": 12
+    },
+    {
+      "title": "Software requirements sources",
+      "question": "What are the sources of software requirements?",
+      "answer": "[ADD ANSWER]",
+      "slug": "software-requirements-sources",
+      "conceptId": 3,
+      "id": 13
+    },
+    {
+      "title": "Elicitation techniques",
+      "question": "What are elicitation techniques?",
+      "answer": "ADD ANSWER",
+      "slug": "Elicitation-techniques",
+      "conceptId": 3,
+      "id": 14
+    },
+    {
+      "title": "Primary-elicitation-techniques",
+      "question": "What are the primary elicitation techniques?",
+      "answer": "interviews, scenarios, prototypes, facilitated meetings, observation, users stories, competitor analysis, data mining",
+      "slug": "Primary-elicitation-techniques",
+      "conceptId": 14,
+      "id": 15
+    },
+    {
+      "title": "Requirements classification",
+      "question": "What are the primary ways classifying requirements?",
+      "answer": "- functional or nonfunctional\n- derived from high-level requirements or emergent properties",
+      "slug": "requirements-classification",
+      "conceptId": 3,
+      "id": 16
+    },
+    {
+      "title": "Software testing",
+      "question": "What is software testing?",
+      "answer": "Dynamic verification that a program provides expected behaviors on a finite set of test cases, suitably selected from the usually infinite execution domain.",
+      "slug": "software-testing",
+      "conceptId": 1,
+      "id": 17
+    },
+    {
+      "title": "Software maintenance",
+      "question": "What is software maintenance?",
+      "answer": "The totality of activities required to provide cost-effective support to software.",
+      "slug": "software-maintenance",
+      "conceptId": 1,
+      "id": 18
+    },
+    {
+      "title": "Need for Maintenance",
+      "question": "Why is maintenance needed?",
+      "answer": "To ensure that the software continues to satisfy user requirements.",
+      "slug": "need-for-maintenance",
+      "conceptId": 18,
+      "id": 19
+    },
+    {
+      "title": "Software Engineering Management",
+      "question": "Why is software engineering management?",
+      "answer": "ADD ANSWER",
+      "slug": "software-engineering-management",
+      "conceptId": 1,
+      "id": 20
+    },
+    {
+      "title": "Software Engineering Process",
+      "question": "Why is software engineering process?",
+      "answer": "ADD ANSWER",
+      "slug": "software-engineering-process",
+      "conceptId": 1,
+      "id": 21
+    },
+    {
+      "title": "Software Life Cycles",
+      "question": "Why is a software life cycle?",
+      "answer": "ADD ANSWER",
+      "slug": "software-life-cycles",
+      "conceptId": 21,
+      "id": 22
+    },
+    {
+      "title": "Software Engineering Models and Methods",
+      "question": "What are software engineering models and methods?",
+      "answer": "ADD ANSWER",
+      "slug": "software-engineering-models-and-methods",
+      "conceptId": 1,
+      "id": 22
+    },
+    {
+      "title": "Software Quality",
+      "question": "What is software quality?",
+      "answer": "ADD ANSWER",
+      "slug": "software-quality",
+      "conceptId": 1,
+      "id": 23
     }
   ]
 }

@@ -25,7 +25,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "cypress": "cypress open",
-    "api:knowledge": "json-server data/knowledge.json --port=3333"
+    "api:knowledge": "json-server data/knowledge.json --port=3333 --watch",
+    "api:performance": "json-server data/performance.json --port=4444 --watch",
+    "api": "yarn api:knowledge & yarn api:performance"
   },
   "eslintConfig": {
     "extends": [

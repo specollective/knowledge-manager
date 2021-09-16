@@ -1,1 +1,88 @@
+.concept-header {
+  padding-left: 1em;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  padding-bottom: 1em;
+}
 
+.concept-header a {
+  margin-right: 1em;
+}
+
+.concept-question {
+  text-align: center;
+}
+
+.concept-answer {
+  min-height: 10em;
+  white-space: pre-line;
+  width: 50%;
+  margin: auto;
+}
+
+.concept-subconcepts {
+  padding-left: 1em;
+}
+
+.review-subconcept {
+  display: block;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10em;
+
+}
+
+.review-button-group {
+  text-align: center;
+  width: 100%;
+}
+
+.review-button-group button {
+  margin-right: 1em;
+  margin-left: 1em;
+  width: 10em;
+}
+
+
+
+.review-complete {
+  text-align: center;
+}
+
+/* .search-box {
+  margin-top: 10em;
+  text-align: center;
+} */
+
+.search-area {
+  width: 70%;
+  margin: auto;
+  text-align: center;
+}
+
+.search-box input {
+  text-align: left;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  width: 100%;
+}
+
+.search-results {
+  text-align: left;
+  width: 100%;
+}
+
+form label {
+  display: block;
+}
+
+form input {
+  margin-bottom: 1em;
+  width: 70%;
+}
+
+form textarea {
+  width: 70%;
+  min-height: 10em;
+}
