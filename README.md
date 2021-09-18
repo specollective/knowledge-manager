@@ -4,6 +4,9 @@ This repository houses the code for the Knowledge Manager application.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+![Screen Records](https://user-images.githubusercontent.com/4009178/133867437-02bfc00b-8a49-4b6c-8d93-c7552bcee6fe.gif)
+
+
 ## Available Scripts
 
 In the project directory, you can run:
