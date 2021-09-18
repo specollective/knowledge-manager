@@ -2,7 +2,20 @@
 
 This repository houses the code for the Knowledge Manager application.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+🚧 This codebase is under active development and should be considered unstable. 🚧
+
+## Overview
+
+This project implements a basic spaced repetition backed flash card application.
+
+- Bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and Typescript.
+- Uses the SuperMemo algorithm for calculating review schedules via the [supermemo npm package](https://github.com/maxvien/supermemo#readme)
+- Handle navigation via react-router-dom
+- Currently persists data via [json-server](https://github.com/typicode/json-server) and JSON files
+- Knowledge base data is stored in version control in data/knowledge.json
+- Learner performance data is stored locally in data/performance.json and ignored by git.
+
+## Basic Functionality
 
 ![Screen Records](https://user-images.githubusercontent.com/4009178/133867437-02bfc00b-8a49-4b6c-8d93-c7552bcee6fe.gif)
 
