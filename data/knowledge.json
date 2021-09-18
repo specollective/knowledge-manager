@@ -176,17 +176,9 @@
       "id": 21
     },
     {
-      "title": "Software Life Cycles",
-      "question": "Why is a software life cycle?",
-      "answer": "ADD ANSWER",
-      "slug": "software-life-cycles",
-      "conceptId": 21,
-      "id": 22
-    },
-    {
       "title": "Software Engineering Models and Methods",
       "question": "What are software engineering models and methods?",
-      "answer": "ADD ANSWER",
+      "answer": "A structured approach to software engineering with the goal of making that activity systematic, repeatable, and ultimately more success-oriented.",
       "slug": "software-engineering-models-and-methods",
       "conceptId": 1,
       "id": 22
@@ -198,6 +190,53 @@
       "slug": "software-quality",
       "conceptId": 1,
       "id": 23
+    },
+    {
+      "title": "Software Engineering Professional Practice",
+      "question": "What is software engineering professional practice?",
+      "answer": "A knowledge area concerned with the knowledge, skills, and attitudes that software engineers must possess to practice software engineering in a professional, responsible, and ethical manner.",
+      "slug": "software-engineering-professional-practice",
+      "conceptId": 1,
+      "id": 24
+    },
+    {
+      "title": "Using models in software engineering",
+      "question": "Using models provides an approach to ...",
+      "answer": "problem solving, a notation, and procedures for model construction and analysis.",
+      "slug": "using-models-in-software-engineering",
+      "conceptId": 22,
+      "id": 25
+    },
+    {
+      "title": "Biology",
+      "question": "What is biology?",
+      "answer": "ADD ANSWER",
+      "slug": "biology",
+      "id": 26
+    },
+    {
+      "title": "Cell biology",
+      "question": "What is cell biology?",
+      "answer": "A branch of biology that studies the structure, function and behavior of cells.",
+      "slug": "cell-biology",
+      "conceptId": 26,
+      "id": 27
+    },
+    {
+      "title": "Software Engineering Economics",
+      "question": "What is software engineering economics?",
+      "answer": "ADD ANSWER",
+      "slug": "software-engineering-economics",
+      "conceptId": 1,
+      "id": 28
+    },
+    {
+      "title": "Conceptual Modeling",
+      "question": "What is a conceptual model?",
+      "answer": "Models comprise entities from the problem domain, configured to reflect their real-world relationships and dependencies.",
+      "slug": "conceptual-modeling",
+      "conceptId": 3,
+      "id": 29
     }
   ]
 }

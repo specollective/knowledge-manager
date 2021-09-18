@@ -1,29 +1,73 @@
 describe('Cypress', () => {
-  it('is working', () => {
-    expect(true).to.equal(true)
+  beforeEach(() => {
+    cy.visit('http://localhost:3000')
   })
 
-  it('opens the app', () => {
-    cy.visit('http://localhost:3000')
+  // it('is working', () => {
+  //   expect(true).to.equal(true)
+  // })
 
+  it('opens the app', () => {
     cy.contains('Search Knowledge Base').should('be.visible')
   })
 
   it('handles basic search', () => {
-    cy.visit('http://localhost:3000')
-    cy.contains('What is software design?').should('not.exist')
+    cy.contains('Software Design').should('not.exist')
     cy.get('#search-input')
       .should('be.visible')
       .type('software{enter}')
-    cy.contains('What is software design?').should('be.visible')
+    cy.contains('Software Design').should('be.visible')
   })
 
   it('navigates to concept page', () => {
-    cy.visit('http://localhost:3000')
     cy.get('#search-input')
       .should('be.visible')
       .type('software{enter}')
-    cy.contains('What is software engineering?').click()
-    cy.contains('What is configuration management?').should('be.visible')
+    cy.contains('Software Engineering').click()
+    cy.contains('Configuration Management').should('be.visible')
+  })
+
+  it('navigates to concept page', () => {
+    cy.get('#search-input')
+      .should('be.visible')
+      .type('software{enter}')
+    cy.contains('Software Engineering').click()
+    cy.contains('Configuration Management').should('be.visible')
+  })
+
+  it('navigates to review page', () => {
+    cy.get('#search-input')
+      .should('be.visible')
+      .type('software{enter}')
+
+    cy.contains('Software Engineering').click()
+    cy.contains('Review Concept').click()
+    cy.contains('What are software requirements?').should('be.visible')
+    cy.contains('Show Answer').should('be.visible')
+    cy.contains('Due date').should('be.visible')
+  })
+
+  it('shows to answer', () => {
+    cy.get('#search-input')
+      .should('be.visible')
+      .type('software{enter}')
+
+    cy.contains('Software Engineering').click()
+    cy.contains('Review Concept').click()
+    cy.contains('What are software requirements?').should('be.visible')
+    cy.contains('Show Answer').click()
+    cy.contains('Software requirements express the needs').should('be.visible')
+  })
+
+  it('shows response buttons', () => {
+    cy.get('#search-input')
+      .should('be.visible')
+      .type('software{enter}')
+    
+    cy.contains('Software Engineering').click()
+    cy.contains('Review Concept').click()
+    cy.contains('What are software requirements?').should('be.visible')
+    cy.contains('Show Answer').click()
+    cy.contains('Software requirements express the needs').should('be.visible')
   })
 })

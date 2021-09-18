@@ -14,10 +14,11 @@
 }
 
 .concept-answer {
-  min-height: 10em;
+  min-height: 6em;
   white-space: pre-line;
-  width: 50%;
-  margin: auto;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .concept-subconcepts {
@@ -26,7 +27,7 @@
 
 .review-subconcept {
   display: block;
-  width: 70%;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 10em;
@@ -34,26 +35,20 @@
 }
 
 .review-button-group {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  width: 50%;
+}
+
+.review-actions {
   text-align: center;
-  width: 100%;
 }
-
-.review-button-group button {
-  margin-right: 1em;
-  margin-left: 1em;
-  width: 10em;
-}
-
-
 
 .review-complete {
   text-align: center;
 }
-
-/* .search-box {
-  margin-top: 10em;
-  text-align: center;
-} */
 
 .search-area {
   width: 70%;

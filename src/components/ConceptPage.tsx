@@ -42,7 +42,9 @@ const ConceptPage = ({ match }: RouteComponentProps<MatchProps>) => {
         </div>
         <div>
           { concept?.concepts?.length > 0 && <Link to={`/review/${concept.slug}`}>Review Concept</Link> }
-          <Link to={`/new?conceptId=${concept.id}`}>New Concept</Link>
+          { concept?.concepts?.length > 0 && <Link to={`/review/${concept.slug}?due=true`}>Review Due</Link> }
+          <Link to={`/new?conceptId=${concept.id}`}>Add Subconcept</Link>
+          <Link to={`/edit/${concept.slug}`}>Edit Concept</Link>
         </div>
       </div>
 
@@ -54,7 +56,7 @@ const ConceptPage = ({ match }: RouteComponentProps<MatchProps>) => {
           {concept.concepts.map(subconcept => {
             return (
               <div key={subconcept.slug}>
-                <Link to={`/learn/${subconcept.slug}`}>{subconcept.question}</Link>
+                <Link to={`/learn/${subconcept.slug}`}>{subconcept.title}</Link>
               </div>
             )
           })}

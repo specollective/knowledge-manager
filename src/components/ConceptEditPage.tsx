@@ -17,71 +17,28 @@ function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-function checkIfImageExists (url: string, callback: (value: boolean) => boolean) {
-  const img = new Image();
-  img.src = url;
-
-  if (img.complete) {
-    callback(true);
-  } else {
-    img.onload = () => {
-      callback(true);
-    };
-    img.onerror = () => {
-      callback(false);
-    };
-  }
+interface MatchProps {
+  slug: string
 }
 
-function InputForType ({ name, value, type, handleUpdate } : {
-  name: string,
-  type: string,
-  handleUpdate: (e: React.ChangeEvent<HTMLInputElement>|React.ChangeEvent<HTMLTextAreaElement>) => void,
-  value: string,
-}) {
-  const [imageVisible, setImageVisible] = useState(false)
+function ConceptEditPage () {
+  const history = useHistory()
+  const { slug } = useParams<MatchProps>()
+  const [concept, setConcept] = useState<ConceptInterface | undefined>(undefined)
+
+  async function loadConcept () {
+    const json = await api('GET', 'concepts?slug=', slug)
+    console.log(json)
+    setConcept(json[0])
+  }
 
   useEffect(() => {
-    if (type === 'image') {
-      checkIfImageExists(value, setImageVisible)
-    }
-  }, [type, value])
-
-  if (type === 'image') {
-    return (
-      <div>
-        <input name={name} value={value} onChange={handleUpdate} />
-        <br/>
-        { imageVisible && <img alt={name} src={value} /> }
-      </div>
-    )
-  } else {
-    return (
-      <textarea
-        autoComplete="off"
-        name={name}
-        value={value}
-        onChange={handleUpdate}
-      >
-      </textarea>
-    )
-  }
-}
-
-function ConceptCreatePage () {
-  const history = useHistory();
-  const query = useQuery();
-  const conceptId: any = query.get('conceptId')
-
-  const [concept, setConcept] = useState<ConceptInterface>({
-    title: '',
-    question: '',
-    answer: '',
-    slug: '',
-    conceptId: conceptId ? parseInt(conceptId) : undefined
-  })
+    loadConcept()
+  }, [])
 
   function validateConcept () {
+    if (!concept) return
+
     const attributes = ['title', 'slug', 'question', 'answer']
     const missingAttribute = attributes.some(attribute => {
       return concept[attribute as keyof ConceptInterface] === ''
@@ -101,7 +58,7 @@ function ConceptCreatePage () {
     if (!validateConcept()) return
 
     try {
-      await api('POST', 'concepts', undefined, { ...concept })
+      await api('PUT', 'concepts/', concept.id, { ...concept })
       history.goBack()
     } catch {
       window.alert('Something went wrong!')
@@ -109,12 +66,17 @@ function ConceptCreatePage () {
   }
 
   function handleUpdate (e: React.ChangeEvent<HTMLInputElement>|React.ChangeEvent<HTMLTextAreaElement>) {
+    if (!concept) return
+
     if (e.target.name === 'title') {
-      concept.slug = e.target.value.split(' ').join('-').toLowerCase()
+      concept.slug = e.target.value.split(' ').join('-')
     }
 
     setConcept({ ...concept, [e.target.name] : e.target.value })
   }
+
+  if (!concept) return <div>Loading...</div>
+
 
   return (
     <div>
@@ -134,18 +96,13 @@ function ConceptCreatePage () {
           </div>
 
           <div>
-            <select name="questionType" value={concept.questionType} onChange={handleUpdate}>
-              <option value="text">Text</option>
-              <option value="image">Image</option>
-            </select>
             <label>Question</label>
-
-            <InputForType
+            <textarea
               name="question"
-              type={concept.questionType}
+              autoComplete="off"
               value={concept.question}
-              handleUpdate={handleUpdate}
-            />
+              onChange={handleUpdate}
+            ></textarea>
           </div>
 
           <div>
@@ -187,4 +144,4 @@ function ConceptCreatePage () {
   )
 }
 
-export default ConceptCreatePage
+export default ConceptEditPage

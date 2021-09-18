@@ -1,23 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Link, RouteComponentProps } from "react-router-dom";
+import React, { useEffect, useState } from "react"
+import { BrowserRouter as Router, Route, Link, RouteComponentProps, useLocation } from "react-router-dom"
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
+import dayjs from 'dayjs'
+
 import NavigationBar from './NavigationBar'
+import { ConceptInterface } from '../interfaces/ConceptInterface'
+import { ChunkInterface } from '../interfaces/ChunkInterface'
+import { practice } from '../services/practice'
+import { api } from '../services/api'
+import { PERFORMANCE_OPTIONS } from '../constants/performance-options'
+
+dayjs.extend(isSameOrBefore)
 
 interface MatchProps {
   slug: string
-}
-
-interface ConceptInterface {
-  id: number;
-  question: string;
-  answer: string;
-  slug: string;
-  title: string;
-  concepts: ConceptInterface[]
-}
-
-interface ChunkInterface {
-  id: number;
-  performance: number;
 }
 
 function ReviewCompleteMessage ({ concept } : {
@@ -37,19 +33,27 @@ function ReviewButtonGroup ({ updateChunk } : {
   updateChunk: (value: number) => void
 }) {
   return (
-    <div className="review-button-group">
-      <button onClick={() => updateChunk(0)}>Bad</button>
-      <button onClick={() => updateChunk(1)}>Good</button>
-      <button onClick={() => updateChunk(2)}>Perfect</button>
+    <div className="review-button-group" onChange={(e) => updateChunk(e.target.value)}>
+      {
+        PERFORMANCE_OPTIONS.map(option => {
+          return (
+            <div>
+              <input key={option.name} type="radio" value={option.value} name={option.name} /> {option.label}
+            </div>
+          )
+        })
+      }
     </div>
   )
 }
 
-const KNOWLEDGE_BASE_URL = 'http://localhost:3333'
-const PERFORMANCE_URL = 'http://localhost:4444'
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
 const ReviewPage = ({ match }: RouteComponentProps<MatchProps>) => {
   const { slug } = match.params
+  const query = useQuery()
   const [loading, setLoading] = useState(true)
   const [concept, setConcept] = useState<ConceptInterface | undefined>(undefined)
   const [chunk, setChunk] = useState<ChunkInterface | undefined>(undefined)
@@ -59,17 +63,62 @@ const ReviewPage = ({ match }: RouteComponentProps<MatchProps>) => {
   async function loadData () {
     let response
 
-    response = await fetch(`${KNOWLEDGE_BASE_URL}/concepts?slug=${slug}&_embed=concepts`)
-    const conceptJSON = await response.json()
-    const conceptObject = conceptJSON[0]
+    const conceptsJSON = await api(
+      'GET',
+      'concepts',
+      `?slug=${slug}&_embed=concepts`,
+      null,
+      'knowledge-api',
+    )
+    const conceptObject = conceptsJSON[0]
+
+    const chunksJSON = await api(
+      'GET',
+      'chunks',
+      `?reviewId=${conceptObject.id}`,
+      null,
+      'performance-api',
+    )
+
+    const chunkIndex = chunksJSON.reduce((accumulator, chunkRecord) => {
+      accumulator[chunkRecord.conceptId] = chunkRecord
+      return accumulator
+    }, {})
+
+    let filtersSubconcepts = conceptObject.concepts
+
+    if (query.get('due')) {
+      filtersSubconcepts = filtersSubconcepts.filter(subconcept => {
+        const chunkRecord = chunkIndex[subconcept.id]
+        if (!chunkRecord) {
+          return true
+        } else {
+          return dayjs(chunkRecord.dueDate).isSameOrBefore(dayjs(Date.now()))
+        }
+      })
+    }
+
     setConcept(conceptObject)
-    setSubconcepts(conceptObject.concepts)
+    setSubconcepts(filtersSubconcepts)
 
-    response = await fetch(`${PERFORMANCE_URL}/chunks?conceptId=${conceptObject.id}`)
-    const chunksJSON = await response.json()
-    const chunkObject = chunksJSON[0]
-    setChunk(chunkObject)
+    const currentSubconcept = filtersSubconcepts[0]
 
+    if (!currentSubconcept) return
+
+    const chunkObject = chunkIndex[currentSubconcept.id]
+
+    if (chunkObject) {
+      setChunk(chunkObject)
+    } else {
+      setChunk({
+        conceptId: currentSubconcept.id,
+        reviewId: conceptObject.id,
+        interval: 0,
+        repetition: 0,
+        efactor: 2.5,
+        dueDate: dayjs(Date.now()).format('YYYY-MM-DD')
+      })
+    }
 
     setLoading(false)
   }
@@ -80,42 +129,52 @@ const ReviewPage = ({ match }: RouteComponentProps<MatchProps>) => {
     setAnswerVisible(true)
   }
 
-  function updateChunk (value: number) {
-    const subconcept = subconcepts?.shift()
+  async function updateChunk (value: number) {
+    // Remove the concept being reviewed
+    subconcepts?.shift()
 
-    let chunkJSON
-    if (chunk) {
-      chunkJSON = chunk
-      chunkJSON.performance = value
+    const updatedChunk = practice(chunk, value)
+    const id = chunk.id ? `/${chunk.id}` : ''
+    const method = chunk.id ? 'PUT' : 'POST'
+    const updateChunkJSON = await api(
+      method,
+      'chunks',
+      id,
+      {
+        ...updatedChunk,
+        dueDate: dayjs(updatedChunk.dueDate).format('YYYY-MM-DD'),
+      },
+      'performance-api',
+    )
+
+    setChunk(updateChunkJSON)
+    setAnswerVisible(false)
+    setSubconcepts([...subconcepts])
+
+    const nextConceptId = subconcepts[0]?.id
+
+    if (!nextConceptId) return
+
+    const nextChunkJSON = await api(
+      'GET',
+      'chunks',
+      `?conceptId=${nextConceptId}`,
+      null,
+      'performance-api',
+    )
+    const nextChunk = nextChunkJSON[0]
+
+    if (nextChunk) {
+      setChunk(nextChunk)
     } else {
-      chunkJSON = {
-        performance: value,
-        conceptId: subconcept?.id
-      }
-    }
-
-    const id = chunk ? `/${chunk.id}` : ''
-
-    fetch(`${PERFORMANCE_URL}/chunks${id}`, {
-      method: chunk ? 'PUT' : 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(chunkJSON),
-    })
-      .then(response => response.json())
-      .then(async data => {
-        setChunk(data)
-        setAnswerVisible(false)
-        setSubconcepts([...subconcepts])
-
-        const subconcept = subconcepts[0]
-        const response = await fetch(`${PERFORMANCE_URL}/chunks?conceptId=${subconcept.id}`)
-        const chunksJSON = await response.json()
-        const chunkObject = chunksJSON[0]
-        setChunk(chunkObject)
+      setChunk({
+        conceptId: nextConceptId,
+        interval: 0,
+        repetition: 0,
+        efactor: 2.5,
+        dueDate: dayjs(Date.now()).format('YYYY-MM-DD')
       })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+    }
   }
 
   const visibility = answerVisible ? 'visible' : 'hidden'
@@ -138,11 +197,19 @@ const ReviewPage = ({ match }: RouteComponentProps<MatchProps>) => {
           </div>
         </div>
 
-        <div className="review-button-group">
-          { answerVisible
-              ? <ReviewButtonGroup updateChunk={updateChunk} />
-              : <button onClick={showAnswer}>Show Answer</button>
-          }
+        <div className="review-actions">
+          <div>
+            { answerVisible
+                ? <ReviewButtonGroup updateChunk={updateChunk} />
+                : <button onClick={showAnswer}>Show Answer</button>
+            }
+          </div>
+
+          <div>
+            <h4>
+              Due date {dayjs(chunk.dueDate).format('MM/DD/YYYY')}
+            </h4>
+          </div>
         </div>
       </div>
     </div>
