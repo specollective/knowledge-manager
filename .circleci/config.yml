@@ -1,6 +1,6 @@
 version: '2.1'
 orbs:
-  node: circleci/node14-bullseye-browsers
+  node: twuni/nodejs@15.11.0
 jobs:
   test:
     executor:
