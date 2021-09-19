@@ -5,13 +5,10 @@ import App from './App';
 
 describe('App', () => {
   test('renders application name', () => {
-    expect(true).toBe(true)
+    render(<App />);
+    const headingElement = screen.getByText(/Knowledge Manager/i);
+    expect(headingElement).toBeInTheDocument();
   });
-  // test('renders application name', () => {
-  //   render(<App />);
-  //   const headingElement = screen.getByText(/Knowledge Manager/i);
-  //   expect(headingElement).toBeInTheDocument();
-  // });
   //
   // test('renders search prompt', async () => {
   //   render(<App />);

@@ -15,5 +15,8 @@ jobs:
           name: Install Dependencies
           command: npm install
       - run:
+          name: Install Dependencies
+          command: npm run api-test
+      - run:
           name: Run tests
           command: npm run test
