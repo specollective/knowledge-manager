@@ -29,7 +29,7 @@
     "cypress": "cypress open",
     "api:knowledge": "json-server data/knowledge.json --port=3333 --watch",
     "api:performance": "json-server data/performance.json --port=4444 --watch",
-    "api:performance:test": "json-server data/performance.test.json --port=4444 --watch",
+    "api:performance:test": "json-server data/performance-test.json --port=4444 --watch",
     "api": "yarn api:knowledge & yarn api:performance",
     "api-test": "yarn api:knowledge & yarn api:performance:test",
   },
