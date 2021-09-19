@@ -1,19 +1,19 @@
-version: '2.1'
+version: 2.1
+
 orbs:
-  node: twuni/nodejs@15.11.0
+  heroku: circleci/heroku@0.0.10
+
 jobs:
-  test:
-    executor:
-      name: node/default
-      tag: '13'
+  build:
+    docker:
+      - image: circleci/node:14.17.6-bullseye-browsers
+    working_directory: ~/repo
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: yarn
+      # install dependencies
       - run:
-          command: yarn run test
-          name: Run YARN tests
-workflows:
-  test_my_app:
-    jobs:
-      - test
+          name: Install Dependencies
+          command: npm install
+      - run:
+          name: Run tests
+          command: npm run test
