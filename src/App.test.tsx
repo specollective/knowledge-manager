@@ -4,13 +4,13 @@ import userEvent from '@testing-library/user-event';
 import App from './App';
 
 describe('App', () => {
-  test('renders welcome heading', () => {
+  test('renders application name', () => {
     render(<App />);
     const headingElement = screen.getByText(/Knowledge Manager/i);
     expect(headingElement).toBeInTheDocument();
   });
 
-  test('root path', async () => {
+  test('renders search prompt', async () => {
     render(<App />);
 
     act(() => {
@@ -23,7 +23,7 @@ describe('App', () => {
     });
   });
 
-  test('ok', async () => {
+  test('handles basic search', async () => {
     render(<App />);
 
     await act(async () => {
@@ -32,7 +32,7 @@ describe('App', () => {
         const searchInput = screen.getByLabelText('Search Knowledge Base')
         fireEvent.change(searchInput, { target: { value: 'Software' } })
         fireEvent.keyDown(searchInput, { key: 'Enter', code: 13 })
-        expect(screen.getByText(/What is software design?/i)).toBeInTheDocument();
+        expect(screen.getByText(/Software Design/i)).toBeInTheDocument();
       });
     })
   });

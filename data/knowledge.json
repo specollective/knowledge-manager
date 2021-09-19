@@ -302,6 +302,30 @@
       "slug": "systems-theory",
       "conceptId": 30,
       "id": 37
+    },
+    {
+      "title": "Engineered Systems",
+      "question": "What is an engineered system?",
+      "answer": "A technical or socio-technical system which is the subject of a system engineering life cycle.",
+      "slug": "engineered-systems",
+      "conceptId": 30,
+      "id": 38
+    },
+    {
+      "title": "Design of Engineered Systems",
+      "question": "Why are engineered systems designed or adapted?",
+      "answer": "To interact with an anticipated operational environment to achieve one or more intended purposes while complying with applicable constraints.",
+      "slug": "design-of-engineered-systems",
+      "conceptId": 30,
+      "id": 39
+    },
+    {
+      "title": "Engineered System Context",
+      "question": "What is an engineered system context?",
+      "answer": "A reference frame that centers around an engineered system but also includes in its relationships other engineered, social or natural systems in one or more defined environments.",
+      "slug": "engineered-system-context",
+      "conceptId": 30,
+      "id": 40
     }
   ]
 }
