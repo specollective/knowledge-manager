@@ -1,25 +1,21 @@
 version: 2.1
 jobs:
   build:
+    working_directory: ~/repo
     docker:
       - image: circleci/node:14.17.1-browsers
 
-    working_directory: ~/repo
 steps:
-      - checkout
-
-      - restore_cache:
-        keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
-
-      - run: yarn install
-
-      - save_cache:
-        paths:
-          - node_modules
-          - ~/.npm
-          - ~/.cache
-        key: v1-dependencies-{{ checksum "package.json" }}
-
-      - run: yarn test
+  - checkout
+  - restore_cache:
+    keys:
+      - v1-dependencies-{{ checksum "package.json" }}
+      - v1-dependencies-
+  - run: yarn install
+  - save_cache:
+    paths:
+      - node_modules
+      - ~/.npm
+      - ~/.cache
+    key: v1-dependencies-{{ checksum "package.json" }}
+  - run: yarn test
