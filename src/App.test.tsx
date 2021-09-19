@@ -23,19 +23,19 @@ describe('App', () => {
   //   });
   // });
   //
-  // test('handles basic search', async () => {
-  //   render(<App />);
-  //
-  //   await act(async () => {
-  //     userEvent.click(screen.getByText(/Knowledge Manager/i))
-  //     await waitFor(() => {
-  //       const searchInput = screen.getByLabelText('Search Knowledge Base')
-  //       fireEvent.change(searchInput, { target: { value: 'Software' } })
-  //       fireEvent.keyDown(searchInput, { key: 'Enter', code: 13 })
-  //       expect(screen.getByText(/Software Design/i)).toBeInTheDocument();
-  //     });
-  //   })
-  // });
+  test('handles basic search', async () => {
+    render(<App />);
+
+    await act(async () => {
+      userEvent.click(screen.getByText(/Knowledge Manager/i))
+      await waitFor(() => {
+        const searchInput = screen.getByLabelText('Search Knowledge Base')
+        fireEvent.change(searchInput, { target: { value: 'Software' } })
+        fireEvent.keyDown(searchInput, { key: 'Enter', code: 13 })
+        expect(screen.getByText(/Software Design/i)).toBeInTheDocument();
+      });
+    })
+  });
   //
   // test('basic search works', async () => {
   //   render(<App />);
