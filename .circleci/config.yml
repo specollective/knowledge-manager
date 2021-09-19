@@ -17,6 +17,15 @@ jobs:
       - run:
           name: Install Dependencies
           command: npm run api-test
+          background: true
+      - run:
+        shell: /bin/sh
+        command: |
+          wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 10 http://localhost:3333
+      - run:
+        shell: /bin/sh
+        command: |
+          wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 10 http://localhost:4444
       - run:
           name: Run tests
           command: npm run test
