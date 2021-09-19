@@ -1,16 +1,19 @@
+version: '2.1'
 orbs:
-  react: "thefrontside/react@0.2.0"
-version: 2.1
+  node: circleci/node14.16.0
+jobs:
+  test:
+    executor:
+      name: node/default
+      tag: '13'
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: yarn
+      - run:
+          command: yarn run test
+          name: Run YARN tests
 workflows:
-  push:
+  test_my_app:
     jobs:
-      - react/install
-      - react/eslint:
-          requires:
-            - react/install
-      - react/test:
-          requires:
-            - react/install
-      - react/coverage:
-          requires:
-            - react/install
+      - test
