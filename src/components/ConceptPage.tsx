@@ -38,7 +38,7 @@ const ConceptPage = ({ match }: RouteComponentProps<MatchProps>) => {
       <div className="concept-header">
         <div>
           <h3>{concept.question}</h3>
-          <h4>{concept.answer.split('\n').map(line => <p key={line}>{line}</p>)}</h4>
+          <h4>{concept.answer.split('\n').map(line => <span key={line}>{line}</span>)}</h4>
         </div>
         <div>
           { concept?.concepts?.length > 0 && <Link to={`/review/${concept.slug}`}>Review Concept</Link> }

@@ -237,6 +237,71 @@
       "slug": "conceptual-modeling",
       "conceptId": 3,
       "id": 29
+    },
+    {
+      "answer": "Systems engineering (SE) is a transdisciplinary approach and means to enable the realization of successful systems.",
+      "id": 30,
+      "question": "What is systems engineering?",
+      "slug": "systems-engineering",
+      "source": "Systems Engineering Body of Knowledge",
+      "title": "Systems Engineering"
+    },
+    {
+      "title": "Systems Satisfaction",
+      "question": "What must a system satisfy to be considered successful?",
+      "answer": "The needs of customers, users and other stakeholders.",
+      "slug": "systems-satisfaction",
+      "conceptId": 30,
+      "id": 31
+    },
+    {
+      "title": "Psychology",
+      "question": "What is psychology?",
+      "answer": "The science of mind and behavior.",
+      "slug": "psychology",
+      "conceptId": "",
+      "id": 32
+    },
+    {
+      "title": "Equanimity",
+      "question": "What is equanimity?",
+      "answer": "A state of psychological stability and composure which is undisturbed by experience of or exposure to emotions, pain, or other phenomena that may cause others to lose the balance of their mind.",
+      "slug": "equanimity",
+      "conceptId": 32,
+      "id": 33
+    },
+    {
+      "title": "Compassion",
+      "question": "What is compassion?",
+      "answer": "Compassion motivates people to go out of their way to help the physical, mental, or emotional pains of another and themselves.",
+      "slug": "compassion",
+      "conceptId": 32,
+      "id": 34
+    },
+    {
+      "title": "Neuroscience",
+      "question": "What is neuroscience?",
+      "answer": "Neuroscience is the scientific study of the nervous system.",
+      "slug": "neuroscience",
+      "conceptId": 32,
+      "id": 35,
+      "source": "https://en.wikipedia.org/wiki/Neuroscience"
+    },
+    {
+      "title": "System",
+      "question": "What is a system?",
+      "answer": "A group of interacting or interrelated elements that act according to a set of rules to form a unified whole.",
+      "slug": "system",
+      "conceptId": 30,
+      "id": 36
+    },
+    {
+      "title": "Systems Theory",
+      "question": "What is systems theory?",
+      "answer": "The interdisciplinary study of systems, which are cohesive groups of interrelated, interdependent parts that can be natural or human-made.",
+      "slug": "systems-theory",
+      "conceptId": 30,
+      "id": 37
     }
   ]
 }

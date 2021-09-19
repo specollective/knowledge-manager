@@ -77,6 +77,17 @@ form input {
   width: 70%;
 }
 
+p {
+  padding: none;
+  margin: none;
+  line-height: 1;
+}
+
+span {
+  display: block;
+  margin-bottom: 0.5em
+}
+
 form textarea {
   width: 70%;
   min-height: 10em;
