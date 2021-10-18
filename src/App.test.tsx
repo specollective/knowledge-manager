@@ -4,26 +4,26 @@ import userEvent from '@testing-library/user-event';
 import App from './App';
 
 describe('App', () => {
-  test('renders welcome heading', () => {
+  test('renders application name', () => {
     render(<App />);
     const headingElement = screen.getByText(/Knowledge Manager/i);
     expect(headingElement).toBeInTheDocument();
   });
-
-  test('root path', async () => {
-    render(<App />);
-
-    act(() => {
-      userEvent.click(screen.getByText(/Knowledge Manager/i))
-    })
-
-    await waitFor(() => {
-      let headingElement = screen.getByText(/Search Knowledge Base/i);
-      expect(headingElement).toBeInTheDocument();
-    });
-  });
-
-  test('ok', async () => {
+  //
+  // test('renders search prompt', async () => {
+  //   render(<App />);
+  //
+  //   act(() => {
+  //     userEvent.click(screen.getByText(/Knowledge Manager/i))
+  //   })
+  //
+  //   await waitFor(() => {
+  //     let headingElement = screen.getByText(/Search Knowledge Base/i);
+  //     expect(headingElement).toBeInTheDocument();
+  //   });
+  // });
+  //
+  test('handles basic search', async () => {
     render(<App />);
 
     await act(async () => {
@@ -32,7 +32,7 @@ describe('App', () => {
         const searchInput = screen.getByLabelText('Search Knowledge Base')
         fireEvent.change(searchInput, { target: { value: 'Software' } })
         fireEvent.keyDown(searchInput, { key: 'Enter', code: 13 })
-        expect(screen.getByText(/What is software design?/i)).toBeInTheDocument();
+        expect(screen.getByText(/Software Design/i)).toBeInTheDocument();
       });
     })
   });

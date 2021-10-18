@@ -19,6 +19,9 @@ This project implements a basic spaced repetition backed flash card application.
 
 ![Screen Records](https://user-images.githubusercontent.com/4009178/133867437-02bfc00b-8a49-4b6c-8d93-c7552bcee6fe.gif)
 
+# Continuous Integration
+
+To be continued...
 
 ## Available Scripts
 

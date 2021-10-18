@@ -1,0 +1,25 @@
+version: 2.1
+
+orbs:
+  heroku: circleci/heroku@0.0.10
+
+jobs:
+  build:
+    docker:
+      - image: circleci/node:14.17.6-bullseye-browsers
+    working_directory: ~/repo
+    steps:
+      - checkout
+      # install dependencies
+      - run:
+          name: Install Dependencies
+          command: npm install
+      - run:
+          name: Install Dependencies
+          command: npm run api-test
+          background: true
+      - run: ./node_modules/.bin/wait-on http://localhost:3333
+      - run: ./node_modules/.bin/wait-on http://localhost:4444
+      - run:
+          name: Run tests
+          command: npm run test
