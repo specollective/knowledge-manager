@@ -20,10 +20,26 @@ This project implements a basic spaced repetition backed flash card application.
 ![Screen Records](https://user-images.githubusercontent.com/4009178/133867437-02bfc00b-8a49-4b6c-8d93-c7552bcee6fe.gif)
 
 
+## create a performance.json file
+create data/performance.json (add to .gitignore file to ensure it is not tracked via version control.)
+```json
+{
+  "chunks": []
+}
+```
+
 ## Available Scripts
+### `yarn`
+Installs all project dependencies
 
-In the project directory, you can run:
+In the project directory, run:
+### `yarn api`
 
+Runs the app's fake api.\
+Open [http://localhost:3333/chunks](http://localhost:3333/chunks) to view the api data chunks in the browser.
+Open [http://localhost:4444/concepts](http://localhost:4444/concepts) to view the api data concepts in the browser.
+
+Also run:
 ### `yarn start`
 
 Runs the app in the development mode.\
@@ -31,6 +47,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
+
 
 ### `yarn test`
 
