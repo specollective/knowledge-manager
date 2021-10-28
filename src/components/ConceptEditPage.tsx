@@ -137,7 +137,7 @@ function ConceptEditPage () {
             />
           </div>
 
-          <button type="submit">Save Concept</button>
+          <plain-button type="submit">Save Concept</plain-button>
         </form>
       </div>
     </div>

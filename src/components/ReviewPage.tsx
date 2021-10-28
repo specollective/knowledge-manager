@@ -9,6 +9,7 @@ import { ChunkInterface } from '../interfaces/ChunkInterface'
 import { practice } from '../services/practice'
 import { api } from '../services/api'
 import { PERFORMANCE_OPTIONS } from '../constants/performance-options'
+import 'spec-ods'
 
 dayjs.extend(isSameOrBefore)
 
@@ -201,7 +202,7 @@ const ReviewPage = ({ match }: RouteComponentProps<MatchProps>) => {
           <div>
             { answerVisible
                 ? <ReviewButtonGroup updateChunk={updateChunk} />
-                : <button onClick={showAnswer}>Show Answer</button>
+                : <plain-button onClick={showAnswer}>Show Answer</plain-button>
             }
           </div>
 
